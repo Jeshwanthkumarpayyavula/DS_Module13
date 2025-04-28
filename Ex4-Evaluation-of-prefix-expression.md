@@ -15,8 +15,8 @@ To write a C program to implement Tower of Hanoi
 ```
 Program to implement Tower of Hanoi.
 
-Developed by : GUTTHA KEERTHANA
-RegisterNumber:  212223240045
+Developed by : P JESHWANTH KUMAR
+RegisterNumber:  212223240114
 
 
 #include<stdio.h> 
