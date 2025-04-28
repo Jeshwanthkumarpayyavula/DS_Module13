@@ -1,48 +1,77 @@
-# EX 1C Implementation of Tower of Hanoi
+# Ex4 Evaluation of prefix expression
 ## DATE: 26-2-2025
 ## AIM:
-To write a C program to implement Tower of Hanoi
+To write a C function to evaluate the given prefix expression using stack and print the output of the given prefix expression from the stack inside the function . 
 
 ## Algorithm
-1. Start the program. 
-2. Check if n is greater than 0. 
-3. Recursively move n-1 disks from source (x) to auxiliary (z) using destination (y). 
-4. Print the move of the n-th disk from source (x) to destination (y). 
-5. Recursively move n-1 disks from auxiliary (z) to destination (y) using source (x). 
-6. The function is called initially with TOH(n, 'A', 'B', 'C') where 'A', 'B', and 'C' are the rods. 
-7. End 
+1. Start. 
+2. Initialize an empty stack s with a variable top for tracking the stack index. 
+3. Define a push() function to add an element to the stack. 
+4. Define a pop() function to remove and return the top element from the stack. 
+5. In evalprefix(), loop through the given prefix expression from right to left. 
+6. For each character, if it’s an operator (+, *), pop two operands from the stack, perform the 
+operation, and push the result. 
+7. If it's a digit, convert it to an integer and push it onto the stack; finally, print the result after 
+the loop ends. 
+8. End.
 ## Program:
 ```
-Program to implement Tower of Hanoi.
+Program to evaluate the given prefix expression.
 
-Developed by : P JESHWANTH KUMAR
-RegisterNumber:  212223240114
-
+Developed by: P JESHWANTH KUMAR
+RegisterNumber: 212223240114
 
 #include<stdio.h> 
-void TOH(int n,char x,char y,char z) 
+#include<string.h> 
+#include<ctype.h> 
+int s[50]; 
+int top=0; 
+void push(int ch) 
 { 
-if(n>0) 
+top++; 
+s[top]=ch; 
+}  
+int pop() 
 { 
-TOH(n-1,x,z,y); 
-printf("%c to %c",x,y); 
-printf("\n"); 
-TOH(n-1,z,y,x); 
+int ch; 
+ch=s[top]; 
+top=top-1; 
+return(ch); 
+}
+void evalprefix(char p[50]) 
+{ 
+int a,b,c,i; 
+for(i=strlen(p)-1;i>=0;i--) 
+{ 
+if(p[i]=='+') 
+{ 
+a=pop(); 
+b=pop(); 
+c=a+b; 
+push(c); 
+} 
+else if(p[i]=='*') 
+{ 
+a=pop(); 
+b=pop(); 
+c=a*b; 
+push(c); 
+} 
+else 
+{ 
+push(p[i]-48); 
 } 
 } 
-int main() 
-{ 
-int n=2; 
-TOH(n,'A','B','C'); 
+printf("%d",pop()); 
 } 
 
 
 ```
 
 ## Output:
+![image](https://github.com/user-attachments/assets/e636ceb2-e918-4f14-805c-837d85b6d991)
 
-![image](https://github.com/user-attachments/assets/4f4520dc-1d13-448b-a557-d216f78fd936)
 
 
 ## Result:
-Thus, the C program to implement Tower of Hanoi using recursion is implemented successfully.
+Thus, the C program to evaluate the prefix expression using stack and print the output of the given prefix expression from the stack inside the function is implemented successfully.
